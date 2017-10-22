@@ -193,6 +193,15 @@ html, body, .editor {
   pointer-events: none;
 }
 
+
+
+
+/*----------  Box tilt  ----------*/
+.box-container, .box-anim,  .box, .box-shadow, .box-shadow:before, .box-shadow:after{
+  // transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: all 0.2s ease-out;
+}
+
 .box-container{
   position: relative;
   width: 200px;
@@ -201,15 +210,13 @@ html, body, .editor {
   margin: 50px 10px;
   float: left;
   cursor: pointer;
-  transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
 .box-anim{
+  position: relative;
+  z-index: 1;
   width: 100%;
   height: 100%;
-  position: relative;
-  transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
-  z-index: 1;
 }
 
 .box {
@@ -217,17 +224,14 @@ html, body, .editor {
   display: inline-block;
   width: 100%;
   height: 100%;
-  background-color: #fff;
   border-radius: 5px;
-  // box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-  border-radius: 5px;
-  transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
   z-index: 1;
+  border-radius: 6px;
+  overflow: hidden;
 }
 
 .box img{
   max-width: 100%;
-  border-radius: 6px;
   user-select: none;
 }
 
@@ -240,9 +244,7 @@ html, body, .editor {
   left: 5%;
   width: 90%;
   height: 90%;
-  // box-shadow: 0 45px 100px rgba(14, 21, 47, 0.4), 0 16px 40px rgba(14, 21, 47, 0.4);
   box-shadow: 0 8px 30px rgba(14, 21, 47, 0.6);
-  transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
   z-index: 0;
 }
 
@@ -258,7 +260,6 @@ html, body, .editor {
   // box-shadow: 0 45px 100px rgba(14, 21, 47, 0.4), 0 16px 40px rgba(14, 21, 47, 0.4);
   box-shadow: 0 47.25px 105px rgba(14, 21, 47, 0.4), 0 16.8px 42px rgba(14, 21, 47, 0.4);
   opacity: 0;
-  transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
   z-index: 0;
 }
 
@@ -277,7 +278,7 @@ html, body, .editor {
 }
 .box-anim{
   &:active{
-    transition: .05s;
+    transition: .05s ease-in-out;
     transform: scale(1);
   }
 }
