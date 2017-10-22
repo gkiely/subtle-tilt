@@ -245,7 +245,6 @@ html, body, .editor {
   width: 90%;
   height: 90%;
   box-shadow: 0 8px 30px rgba(14, 21, 47, 0.6);
-  z-index: 0;
 }
 
 .box-shadow:after{
@@ -282,5 +281,29 @@ html, body, .editor {
     transform: scale(1);
   }
 }
+
+
+
+.mod-2{
+  .box-anim{
+    &:active{
+      transition: .06s ease-in-out;
+      transform: scale(1);
+    }
+  }
+
+  .box-anim{
+    &:active{
+      transform: scale(.95);
+    }
+  }
+
+  .box-container:active{
+    .box-shadow:before{
+      opacity: 0.8;
+    }
+  }
+}
+
 
 /*=====  End of Tilt  ======*/

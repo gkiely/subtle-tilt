@@ -1,6 +1,3 @@
-
-
-
 class Tilter{
   constructor(el, options){
     this.defaultTransform = this.getTransform({
@@ -22,11 +19,6 @@ class Tilter{
     this.clientY = 0;
     this.modernTransform = this.el.style.transform !== undefined;
     // this.glare = this.el.parentNode.querySelector('.tilt-glare');
-
-    let isSafari = window.safari !== undefined;
-    if(isSafari){
-      this.el.parentNode.classList.add('tilt-fallback-shadow');
-    }
   }
   addEventListeners(){
     this.onMouseEnterBind = this.onMouseEnter.bind(this);
@@ -37,13 +29,11 @@ class Tilter{
     this.el.addEventListener('mouseenter', this.onMouseEnterBind);
     this.el.addEventListener('mousemove', this.onMouseMoveBind);
     this.el.addEventListener('mouseleave', this.onMouseLeaveBind);
-    // window.addEventListener('resize', this.onWindowResizeBind);
   }
   removeEventListeners(){
     this.el.removeEventListener("mouseenter", this.onMouseEnterBind);
     this.el.removeEventListener("mousemove", this.onMouseMoveBind);
     this.el.removeEventListener("mouseleave", this.onMouseLeaveBind);
-    // window.removeEventListener("resize", this.onWindowResizeBind);
   }
 
   onWindowResize(e){
@@ -61,7 +51,6 @@ class Tilter{
   onMouseLeave(e){
     this.reset()
   }
-
   getTransform(move, x, y, width, height){
     let tilt = {
       perspective: move.perspective,
@@ -100,15 +89,14 @@ class Tilter{
     let move = this.options.movement;
     let x = (this.clientX - this.rect.left);
     let y = (this.clientY - this.rect.top);
-    this.transform = this.getTransform(move, x, y, this.rect.width, this.rect.height);        
-    if(!_.isEqual(this.transform, this.prevTransform)){
+    this.transform = this.getTransform(move, x, y, this.rect.width, this.rect.height);
+    if(JSON.stringify(this.transform) !== JSON.stringify(this.prevTransform)){
       this.cancelFrame();
       this.render(this.transform);
       this.prevTransform = this.transform;
     }
   }
 }
-
 
 let Tilt = window.Tilt = function(query, options){
   let arr = [].slice.call(document.querySelectorAll(query));
