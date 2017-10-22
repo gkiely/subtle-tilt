@@ -1,0 +1,187 @@
+body{
+ font-family: $ff-content;
+}
+
+h1, h2, h3, h4, h5, h6{
+ // font-family: $ff-title
+}
+
+.wrapper{
+   @include clearfix;
+}
+
+
+.pages{
+  position: relative;
+  margin: 0 auto;
+  padding-bottom: em(75);
+}
+
+.wrapper-content{
+  padding: em(10) em(10);
+}
+
+
+html, body, .editor {
+  margin: 0;
+}
+
+
+
+.title{
+  text-align: center;
+  margin-top: 0;
+}
+
+
+.navigation{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding: em(10) em(10);
+  background: #0060B6;
+  color: #fff;
+}
+.navigation-items{
+
+}
+
+
+
+.Site{
+  &__title{
+    $fz: 18;
+    font-size: em($fz);
+    padding-bottom: em(10, $fz);
+  }
+}
+
+
+
+
+/*============================
+=            Tilt            =
+============================*/
+.card{
+  width: 200px;
+  height: 200px;
+  margin: 50px auto;
+  margin: 50px 10px;
+  float: left;
+
+}
+
+.tilt{
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  position: relative;
+  transition: all 0.2s ease-out;
+  border-radius: 6px;
+  will-change: transform;
+  z-index: 1;
+}
+
+
+.tilt-outer {
+  transition: all 0.2s ease-out;
+  cursor: pointer;
+  will-change: transform;
+  position: relative;
+  &:before, &:after{
+    content: "";
+    margin: auto;
+    transition: all 0.2s ease-out;
+    position: absolute;
+    width: 90%;
+    height: 90%;
+    top: 5%;
+    left: 5%;
+    z-index: 0;
+    border-radius: 0.02px;
+    // background: red;
+  }
+  &:before{
+    box-shadow: 0 8px 30px rgba(14, 21, 47, 0.6);
+  }
+  &:after{
+    opacity: 0;
+    box-shadow: 0 45px 100px rgba(14, 21, 47, 0.4), 0 16px 40px rgba(14, 21, 47, 0.4);
+  }
+}
+
+/*----------  Children  ----------*/
+.tilt-outer{
+  img{
+    max-width: 100%;
+    user-select: none;
+    user-drag: none;
+  }
+}
+
+
+
+/*----------  State  ----------*/
+.tilt-outer{
+  &:hover{
+    transform: scale(1.05);
+  }
+
+  &:hover:before{
+    opacity: 0;
+  }
+
+  &:hover:after{
+    opacity: 1;
+  }
+
+  // @-moz-document url-prefix(){
+  //   &:hover:after{
+  //     transition: .3s .15s;
+  //   }      
+  // }
+
+  &:active{
+    transition: .05s;
+    transform: scale(1);
+  }
+
+  &:active:before{
+    transition: .05s;
+    opacity: 1;
+  }
+
+  &:active:after{
+    transition: .05s;
+    opacity: 0;
+  }
+}
+
+
+
+
+
+
+/* Custom glare */
+.tilt-glare{
+  content: "";
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.8;
+  left: 0;
+  right: 0;
+  margin: auto;
+  // background: linear-gradient(195.5deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0) 80%);
+  // background: linear-gradient(red, orange);
+  width: 100%;
+  height: 100%;
+  transition: .2s;
+  z-index: 1;
+  pointer-events: none;
+}
+
+
+
+/*=====  End of Tilt  ======*/
