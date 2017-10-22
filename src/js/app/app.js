@@ -27,7 +27,7 @@ let host    = window.location.hostname;
 ===========================*/
 
 
-Tilt('.tilt', {
+Tilt('[data-tilt]', {
   "movement": {
     "perspective" : 1600,
     "translateX" : 2,

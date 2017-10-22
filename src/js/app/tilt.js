@@ -22,6 +22,11 @@ class Tilter{
     this.clientY = 0;
     this.modernTransform = this.el.style.transform !== undefined;
     // this.glare = this.el.parentNode.querySelector('.tilt-glare');
+
+    let isSafari = window.safari !== undefined;
+    if(isSafari){
+      this.el.parentNode.classList.add('tilt-fallback-shadow');
+    }
   }
   addEventListeners(){
     this.onMouseEnterBind = this.onMouseEnter.bind(this);
