@@ -231,7 +231,8 @@ html, body, .editor {
   user-select: none;
 }
 
-.box-shadow-start{
+.box-shadow:before{
+  content: "";
   border-radius: 5px;
   position: absolute;
   z-index: 0;
@@ -245,7 +246,7 @@ html, body, .editor {
   z-index: 0;
 }
 
-.box-shadow{
+.box-shadow:after{
   content: "";
   border-radius: 5px;
   position: absolute;
@@ -267,10 +268,10 @@ html, body, .editor {
 }
 
 .box-container:hover:not(:active){
-  .box-shadow-start{
+  .box-shadow:before{
     opacity: 0;
   }
-  .box-shadow{
+  .box-shadow:after{
     opacity: 1;
   }
 }
