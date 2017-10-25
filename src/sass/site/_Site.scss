@@ -202,6 +202,10 @@ html, body, .editor {
   transition: all 0.2s ease-out;
 }
 
+.box{
+  // transform: translate3d(0,0,0);
+}
+
 .box-container{
   position: relative;
   width: 200px;

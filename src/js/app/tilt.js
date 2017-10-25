@@ -19,6 +19,7 @@ class Tilter{
     this.clientY = 0;
     this.modernTransform = this.el.style.transform !== undefined;
     // this.glare = this.el.parentNode.querySelector('.tilt-glare');
+
   }
   addEventListeners(){
     this.onMouseEnterBind = this.onMouseEnter.bind(this);
@@ -42,15 +43,31 @@ class Tilter{
   onMouseEnter(e){
     this.rect = this.el.getBoundingClientRect();
     this.transform = this.defaultTransform;
+    // this.renderLoop();
   }
   onMouseMove(e){
     this.clientX = e.clientX;
     this.clientY = e.clientY;
+
+    // Switch off for older devices
     this.renderRAF = window.requestAnimationFrame(() => this.requestAnimationFrame());
   }
   onMouseLeave(e){
-    this.reset()
+    this.reset();
+
+    // Potential using renderLoop
+    // this.cancelRenderLoop();
   }
+  cancelRenderLoop(){
+    window.cancelAnimationFrame(this.renderRAF);
+  }
+  renderLoop(){
+    this.renderRAF = window.requestAnimationFrame(() => {
+      this.requestAnimationFrame();
+      this.renderLoop();
+    });
+  }
+
   getTransform(move, x, y, width, height){
     let tilt = {
       perspective: move.perspective,
@@ -61,7 +78,7 @@ class Tilter{
       translateY : move.translateY ? 2 * move.translateY / height * y - move.translateY : 0,
       translateZ : move.translateZ ? 2 * move.translateZ / height * y - move.translateZ : 0,
     };
-    return 'perspective(' + tilt.perspective + 'px)' +
+    return  'perspective(' + tilt.perspective + 'px)' +
             ' translate3d(' + tilt.translateX + 'px,' + tilt.translateY + 'px,' + tilt.translateZ + 'px)' +
             ' rotate3d(1,0,0,' + tilt.rotateX + 'deg)' +
             ' rotate3d(0,1,0,' + tilt.rotateY + 'deg)' +
@@ -77,7 +94,7 @@ class Tilter{
   }
   cancelFrame(){
     if(this.renderRAF !== null) {
-      cancelAnimationFrame(this.renderRAF);
+      window.cancelAnimationFrame(this.renderRAF);
     }
   }
   reset(){
@@ -85,7 +102,7 @@ class Tilter{
     this.transform = this.defaultTransform;
     setTimeout(() => this.render(), 60);
   }
-  requestAnimationFrame(e){
+  requestAnimationFrame(){
     let move = this.options.movement;
     let x = (this.clientX - this.rect.left);
     let y = (this.clientY - this.rect.top);
